@@ -34,7 +34,7 @@ public class UserRepository {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         EntityTransaction transaction = entityManager.getTransaction();
         transaction.begin();
-        List<UserModel> users = entityManager.createQuery("select u from UserDto u", UserModel.class).getResultList();
+        List<UserModel> users = entityManager.createQuery("select u from UserModel u", UserModel.class).getResultList();
         System.out.println(users);
         Set<EntityType<?>> entities = entityManager.getMetamodel().getEntities();
         entities.forEach(e -> System.out.println(e.getName()));
