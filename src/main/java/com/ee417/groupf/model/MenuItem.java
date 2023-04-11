@@ -5,6 +5,8 @@ import java.util.UUID;
 public class MenuItem {
     private UUID MenuItemId;
 
+    private String Name;
+
     private String Description;
 
     private MenuItemCategoryEnum Category;
@@ -14,6 +16,14 @@ public class MenuItem {
     private float Price;
 
     private int Calories;
+
+    public String getName() {
+        return Name;
+    }
+
+    public void setName(String name) {
+        Name = name;
+    }
 
     public UUID getMenuItemId() {
         return MenuItemId;
