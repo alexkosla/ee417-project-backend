@@ -1,4 +1,4 @@
-package com.ee417.groupf.models;
+package com.ee417.groupf.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
