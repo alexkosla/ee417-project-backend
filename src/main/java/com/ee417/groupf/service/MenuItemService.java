@@ -67,9 +67,13 @@ public class MenuItemService {
                 // similar to a one-liner foreach loop that returns the list of all MenuItems in the list
                 // where their category matches the category argument from the controller
 
-                menuItemList = menuItemList.stream()
-                        .filter(item ->  item.getCategory() == category)
-                        .collect(Collectors.toList());
+                if(category != MenuItemCategoryEnum.ALL)
+                {
+                    menuItemList = menuItemList.stream()
+                            .filter(item ->  item.getCategory() == category)
+                            .collect(Collectors.toList());
+                }
+
 
                 return menuItemList;
             }
