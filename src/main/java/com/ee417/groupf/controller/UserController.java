@@ -1,4 +1,4 @@
-package com.ee417.groupf.controllers;
+package com.ee417.groupf.controller;
 
 import java.net.URI;
 import java.util.List;
@@ -9,11 +9,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ee417.groupf.services.UserService;
+import com.ee417.groupf.service.UserService;
 
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 
-import com.ee417.groupf.models.UserModel;
+import com.ee417.groupf.model.UserModel;
 
 @RestController
 @RequestMapping("")
@@ -25,9 +25,9 @@ public class UserController {
         this.userService = userService;
     }
 
-    public ResponseEntity<List<UserModel>> getAllUsers() {
-        return ResponseEntity.ok(userService.getAllUsers());
-    }
+//    public ResponseEntity<List<UserModel>> getAllUsers() {
+//        return ResponseEntity.ok(userService.getAllUsers());
+//    }
 
     @PostMapping("/user")
     public ResponseEntity<UserModel> postUser(@RequestBody UserModel userModel) {
