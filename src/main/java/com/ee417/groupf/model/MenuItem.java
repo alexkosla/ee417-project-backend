@@ -3,7 +3,7 @@ package com.ee417.groupf.model;
 import java.util.UUID;
 
 public class MenuItem {
-    private UUID MenuItemId;
+    private int MenuItemId;
 
     private String Name;
 
@@ -17,6 +17,16 @@ public class MenuItem {
 
     private int Calories;
 
+    public MenuItem(int menuItemId, String name, String description, MenuItemCategoryEnum category, String pictureLocation, float price, int calories) {
+        MenuItemId = menuItemId;
+        Name = name;
+        Description = description;
+        Category = category;
+        PictureLocation = pictureLocation;
+        Price = price;
+        Calories = calories;
+    }
+
     public String getName() {
         return Name;
     }
@@ -25,11 +35,11 @@ public class MenuItem {
         Name = name;
     }
 
-    public UUID getMenuItemId() {
+    public int getMenuItemId() {
         return MenuItemId;
     }
 
-    public void setMenuItemId(UUID menuItemId) {
+    public void setMenuItemId(int menuItemId) {
         MenuItemId = menuItemId;
     }
 
