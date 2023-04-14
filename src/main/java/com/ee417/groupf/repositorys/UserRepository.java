@@ -12,7 +12,9 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.metamodel.EntityType;
 import org.hibernate.cfg.Configuration;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class UserRepository {
 
 //    private static EntityManagerFactory entityManagerFactory = getEntityManageFactory();

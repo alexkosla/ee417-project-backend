@@ -15,9 +15,11 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-//    public List<UserModel> getAllUsers() {
-//        return userRepository.getAllUsers();
-//    }
+
+    public List<UserModel> getAllUsers() {
+        return userRepository.getAllUsers();
+    }
+
 
     public UserModel postUser(UserModel userModel) {
         return userRepository.postUsers(userModel);
