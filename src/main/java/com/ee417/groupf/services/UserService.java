@@ -15,9 +15,15 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
+<<<<<<< Updated upstream:src/main/java/com/ee417/groupf/services/UserService.java
     public List<UserModel> getAllUsers() {
         return userRepository.getAllUsers();
     }
+=======
+   public List<UserModel> getAllUsers() {
+       return userRepository.getAllUsers();
+   }
+>>>>>>> Stashed changes:src/main/java/com/ee417/groupf/service/UserService.java
 
     public UserModel postUser(UserModel userModel) {
         return userRepository.postUsers(userModel);
