@@ -1,5 +1,6 @@
 package com.ee417.groupf.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -7,16 +8,17 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "users")
+@Table(name = "User")
 public class UserModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-    private String email;
+    @Column(name = "user_id")
+    private int id;
     private String firstname;
-    private String surname;
-    private String address1;
-    private String address2;
+    private String lastname;
+    private String address;
+    private String phone;
+    private String email;
     private String password;
     private String authority;
     private String enabled;
@@ -24,20 +26,12 @@ public class UserModel {
     public UserModel() {
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public String getFirstname() {
@@ -48,28 +42,36 @@ public class UserModel {
         this.firstname = firstname;
     }
 
-    public String getSurname() {
-        return surname;
+    public String getLastname() {
+        return lastname;
     }
 
-    public void setSurname(String surname) {
-        this.surname = surname;
+    public void setLastname(String last_name) {
+        this.lastname = last_name;
     }
 
-    public String getAddress1() {
-        return address1;
+    public String getAddress() {
+        return address;
     }
 
-    public void setAddress1(String address1) {
-        this.address1 = address1;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
-    public String getAddress2() {
-        return address2;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setAddress2(String address2) {
-        this.address2 = address2;
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPassword() {
@@ -95,5 +97,7 @@ public class UserModel {
     public void setEnabled(String enabled) {
         this.enabled = enabled;
     }
+
+    
 
 }
