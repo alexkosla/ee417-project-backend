@@ -27,7 +27,11 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
+<<<<<<< Updated upstream
 		</dependency> -->
+=======
+		</dependency>
+>>>>>>> Stashed changes
 		<!-- <dependency>
 			<groupId>org.jetbrains</groupId>
 			<artifactId>annotations</artifactId>

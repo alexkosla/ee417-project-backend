@@ -26,6 +26,10 @@ public class UserController {
         this.userService = userService;
     }
 
+<<<<<<< Updated upstream:src/main/java/com/ee417/groupf/controllers/UserController.java
+=======
+    
+>>>>>>> Stashed changes:src/main/java/com/ee417/groupf/controller/UserController.java
 
     @GetMapping("/getUsers")
    public ResponseEntity<List<UserModel>> getAllUsers() {

@@ -17,6 +17,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class UserRepository {
 
+<<<<<<< Updated upstream
     private static EntityManagerFactory entityManagerFactory = getEntityManageFactory();
 
     private static EntityManagerFactory getEntityManageFactory() {
@@ -53,6 +54,44 @@ public class UserRepository {
 
         transaction.commit();
         entityManager.close();
+=======
+   private static EntityManagerFactory entityManagerFactory = getEntityManageFactory();
+
+   private static EntityManagerFactory getEntityManageFactory() {
+       if (entityManagerFactory == null) {
+           Configuration configuration = new Configuration().configure("hibernate.cfg.xml")
+                   .addAnnotatedClass(UserModel.class);
+           StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder()
+                   .applySettings(configuration.getProperties());
+           entityManagerFactory = configuration.buildSessionFactory(builder.build());
+       }
+
+       return entityManagerFactory;
+   }
+
+   public List<UserModel> getAllUsers() {
+
+       EntityManager entityManager = entityManagerFactory.createEntityManager();
+       EntityTransaction transaction = entityManager.getTransaction();
+       transaction.begin();
+       List<UserModel> users = entityManager.createQuery("select u from UserModel u", UserModel.class).getResultList();
+       System.out.println(users);
+       Set<EntityType<?>> entities = entityManager.getMetamodel().getEntities();
+       entities.forEach(e -> System.out.println(e.getName()));
+       transaction.commit();
+       entityManager.close();
+       return users;
+   }
+
+    public UserModel postUsers(UserModel user) {
+       EntityManager entityManager = entityManagerFactory.createEntityManager();
+       EntityTransaction transaction = entityManager.getTransaction();
+       transaction.begin();
+       entityManager.persist(user);
+
+       transaction.commit();
+       entityManager.close();
+>>>>>>> Stashed changes
         return user;
     }
 
