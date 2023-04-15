@@ -1,5 +1,6 @@
 # ee417-project-backend
 
+```json
 {
 "orderId": 1,
 "items": [
@@ -19,3 +20,5 @@
 "status": "ORDERED",
 "address": "123 Main St, Anytown, CA 12345"
 }
+```
+
