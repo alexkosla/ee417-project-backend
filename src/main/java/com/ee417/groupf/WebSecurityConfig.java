@@ -24,9 +24,9 @@ public class WebSecurityConfig {
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://localhost:3306/Backend");
-        dataSource.setUsername("root");
-        dataSource.setPassword("yourpasswd");
+        dataSource.setUrl("jdbc:mysql://ee417.crxkzf89o3fh.eu-west-1.rds.amazonaws.com:3306/GroupF");
+        dataSource.setUsername("EE417");
+        dataSource.setPassword("2023_EE417");
         return dataSource;
     }
 

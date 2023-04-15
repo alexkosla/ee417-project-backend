@@ -26,17 +26,12 @@ public class UserController {
         this.userService = userService;
     }
 
-<<<<<<< Updated upstream:src/main/java/com/ee417/groupf/controllers/UserController.java
-    public ResponseEntity<List<UserModel>> getAllUsers() {
-        return ResponseEntity.ok(userService.getAllUsers());
-    }
-=======
+
     @GetMapping("/getUsers")
    public ResponseEntity<List<UserModel>> getAllUsers() {
         System.out.println("--- Get Users ---");
        return ResponseEntity.ok(userService.getAllUsers());
    }
->>>>>>> Stashed changes:src/main/java/com/ee417/groupf/controller/UserController.java
 
     @PostMapping("/postUser")
     public ResponseEntity<UserModel> postUser(@RequestBody UserModel userModel) {
