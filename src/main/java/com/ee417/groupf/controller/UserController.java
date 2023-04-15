@@ -26,7 +26,6 @@ public class UserController {
         this.userService = userService;
     }
 
-    }
 
     @GetMapping("/getUsers")
    public ResponseEntity<List<UserModel>> getAllUsers() {
