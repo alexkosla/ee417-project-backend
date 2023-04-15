@@ -17,7 +17,7 @@ import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import com.ee417.groupf.model.UserModel;
 
 @RestController
-@RequestMapping("users")
+@RequestMapping("/users")
 public class UserController {
 
     private final UserService userService;
@@ -27,7 +27,12 @@ public class UserController {
     }
 
 
-    @GetMapping("/getUsers")
+//     @GetMapping("/getUsers")
+//    public ResponseEntity<List<UserModel>> getAllUsers(int id) {
+//         System.out.println("--- Get Users ---");
+//        return ResponseEntity.ok(userService.getAllUsers(id));
+//    }
+   @GetMapping("/getUsers")
    public ResponseEntity<List<UserModel>> getAllUsers() {
         System.out.println("--- Get Users ---");
        return ResponseEntity.ok(userService.getAllUsers());
