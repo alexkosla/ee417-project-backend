@@ -6,6 +6,10 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.File;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -19,22 +23,30 @@ import java.util.stream.Collectors;
 public class MenuItemService {
     public List<MenuItem> listMenuItems()
     {
-        try{
-            // set the relative path of the location of the json file
-            String fileLocation = "./src/main/resources/stats.json";
-            // create a jackson object mapper to use for converting an object to a json file
-            ObjectMapper mapper = new ObjectMapper();
-            // tell the mapper to parse a single value as an array to avoid errors
-            mapper.enable(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY);
+        List<MenuItem> menuItemList = new ArrayList<MenuItem>();
 
-            // check if the file already exists at the location specified
-            File f = new File(fileLocation);
-            if(f.isFile()) {
-                // if the file does exist, use the mapper to read the value and parse it as an arraylist
-                ArrayList<MenuItem> menuItemList = new ArrayList<MenuItem>(Arrays.asList(mapper.readValue(f, MenuItem[].class)));
-                return menuItemList;
+        try (Connection conn = DriverManager
+                .getConnection("jdbc:mysql://ee417.crxkzf89o3fh.eu-west-1.rds.amazonaws.com:3306/GroupF",
+                        "EE417", "2023_EE417"))
+        {
+            PreparedStatement selectStatement = conn.prepareStatement("select * from Item");
+            ResultSet rs = selectStatement.executeQuery();
+            while (rs.next()) {
+                int itemId = rs.getInt("item_id");
+                String name = rs.getString("name");
+                String description = rs.getString("description");
+                MenuItemCategoryEnum categoryEnum = MenuItemCategoryEnum.valueOf(rs.getString("category"));
+                String pictureLocation = rs.getString("picture_location");
+                float price = rs.getFloat("price");
+                int calories = rs.getInt("calories");
+
+                menuItemList.add(new MenuItem(itemId, name, description, categoryEnum, pictureLocation, price, calories));
             }
 
+            if(menuItemList != null)
+            {
+                return menuItemList;
+            }
         } catch (Exception ex)
         {
             // print the stack trace in case there's an error here reading/writing to file
@@ -45,36 +57,36 @@ public class MenuItemService {
 
     public List<MenuItem> getMenuItemsByCategory(MenuItemCategoryEnum category)
     {
-        List<MenuItem> menuItemList = null;
-        try
-        {
-            // set the relative path of the location of the json file
-            String fileLocation = "./src/main/resources/stats.json";
-            // create a jackson object mapper to use for converting an object to a json file
-            ObjectMapper mapper = new ObjectMapper();
-            // tell the mapper to parse a single value as an array to avoid errors
-            mapper.enable(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY);
+        List<MenuItem> menuItemList = new ArrayList<MenuItem>();
 
-            // check if the file already exists at the location specified
-            File f = new File(fileLocation);
-            if(f.isFile()) {
-                // if the file does exist, use the mapper to read the value and parse it as an arraylist
-                menuItemList = new ArrayList<MenuItem>(Arrays.asList(mapper.readValue(f, MenuItem[].class)));
+        try (Connection conn = DriverManager
+                .getConnection("jdbc:mysql://ee417.crxkzf89o3fh.eu-west-1.rds.amazonaws.com:3306/GroupF",
+                        "EE417", "2023_EE417"))
+        {
+            PreparedStatement selectStatement = conn.prepareStatement("select * from Item");
+            ResultSet rs = selectStatement.executeQuery();
+            while (rs.next()) {
+                int itemId = rs.getInt("item_id");
+                String name = rs.getString("name");
+                String description = rs.getString("description");
+                MenuItemCategoryEnum categoryEnum = MenuItemCategoryEnum.valueOf(rs.getString("category"));
+                String pictureLocation = rs.getString("picture_location");
+                float price = rs.getFloat("price");
+                int calories = rs.getInt("calories");
+
+                menuItemList.add(new MenuItem(itemId, name, description, categoryEnum, pictureLocation, price, calories));
             }
 
             if(menuItemList != null)
             {
                 // similar to a one-liner foreach loop that returns the list of all MenuItems in the list
                 // where their category matches the category argument from the controller
-
-                if(category != MenuItemCategoryEnum.ALL)
-                {
+//                if(category != MenuItemCategoryEnum.ALL)
+//                {
                     menuItemList = menuItemList.stream()
                             .filter(item ->  item.getCategory() == category)
                             .collect(Collectors.toList());
-                }
-
-
+//                }
                 return menuItemList;
             }
         }
